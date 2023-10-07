@@ -3,6 +3,7 @@ import { getFirestore, getDocs, addDoc, collection } from "firebase/firestore";
 import firebase_app from "@/config";
 
 const db = getFirestore(firebase_app);
+const collectionName = "students";
 
 export default async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", true);
@@ -17,7 +18,7 @@ export default async (req, res) => {
   );
 
   if (req.method === "GET") {
-    const simulationCollection = collection(db, "students");
+    const simulationCollection = collection(db, collectionName);
     const simulationSnapshot = await getDocs(simulationCollection);
     const simulationList = simulationSnapshot.docs.map((doc) => doc.data());
     res.status(200).json(simulationList);
@@ -30,7 +31,7 @@ export default async (req, res) => {
       score: simulation.score,
     };
 
-    const simulationCollection = collection(db, "quizes");
+    const simulationCollection = collection(db, collectionName);
     const simulationSnapshot = await addDoc(
       simulationCollection,
       newSimulation
