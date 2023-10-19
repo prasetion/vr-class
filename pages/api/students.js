@@ -26,8 +26,8 @@ export default async (req, res) => {
     const simulation = JSON.parse(JSON.stringify(req.body));
     const newSimulation = {
       name: simulation.name,
-      studentClass: simulation.studentClass,
       registerId: simulation.registerId,
+      time: simulation.time,
       score: simulation.score,
     };
 
