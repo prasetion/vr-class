@@ -31,13 +31,11 @@ export default async (req, res) => {
       time: simulation.time,
       score: simulation.score,
     };
-
     const simulationCollection = collection(db, collectionName);
     const simulationSnapshot = await addDoc(
       simulationCollection,
       newSimulation
     );
-
     res.status(200).json({
       message: "success",
     });
